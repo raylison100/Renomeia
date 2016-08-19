@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
+import javax.swing.JTextField;
 
 
 public class TelaPrincipal extends JFrame {
@@ -31,6 +32,7 @@ public class TelaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextArea textArea;
+	private JTextField textFieldCodigoCam;
 
 	/**
 	 * Launch the application.
@@ -71,7 +73,7 @@ public class TelaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				Botoes bt = new Botoes();
-				bt.botaoRenomeia(textArea);
+				bt.botaoRenomeia(textArea,textFieldCodigoCam.getName());
 
 			}
 		});
@@ -79,7 +81,7 @@ public class TelaPrincipal extends JFrame {
 		panel.add(btnRenomear);
 
 		JLabel lblTivit = new JLabel("TIVIT JBT");
-		lblTivit.setBounds(84, 16, 177, 52);
+		lblTivit.setBounds(102, 0, 177, 52);
 		lblTivit.setForeground(Color.RED);
 		lblTivit.setFont(new Font("SansSerif", Font.PLAIN, 40));
 		panel.add(lblTivit);
@@ -87,7 +89,7 @@ public class TelaPrincipal extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setToolTipText("teste");
 		panel_1.setBorder(new TitledBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), "Copie e cole o c\u00F3digo e o cpf", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(6, 114, 366, 332);
+		panel_1.setBounds(0, 81, 378, 332);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -111,7 +113,7 @@ public class TelaPrincipal extends JFrame {
 		JLabel lblTiEmAo = new JLabel("TI EM A\u00C7\u00C3O");
 		lblTiEmAo.setForeground(Color.RED);
 		lblTiEmAo.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblTiEmAo.setBounds(116, 60, 116, 26);
+		lblTiEmAo.setBounds(125, 42, 116, 26);
 		panel.add(lblTiEmAo);
 		
 		JLabel lblDesenvolvedoresRaylison = new JLabel("Desenvolvedores: Raylison - Alex | Vers\u00E3o: 1.0");
@@ -119,6 +121,16 @@ public class TelaPrincipal extends JFrame {
 		lblDesenvolvedoresRaylison.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblDesenvolvedoresRaylison.setBounds(22, 490, 346, 22);
 		panel.add(lblDesenvolvedoresRaylison);
+		
+		JLabel lblCodigoDaCamera = new JLabel("Codigo da c\u00E2mera");
+		lblCodigoDaCamera.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblCodigoDaCamera.setBounds(78, 419, 118, 23);
+		panel.add(lblCodigoDaCamera);
+		
+		textFieldCodigoCam = new JTextField();
+		textFieldCodigoCam.setBounds(206, 419, 160, 22);
+		panel.add(textFieldCodigoCam);
+		textFieldCodigoCam.setColumns(10);
 
 	}
 }

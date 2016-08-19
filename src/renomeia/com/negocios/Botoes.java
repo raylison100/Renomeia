@@ -9,7 +9,7 @@ import javax.swing.JTextArea;
 
 public class Botoes {
 
-	public void botaoRenomeia(JTextArea textArea) {
+	public void botaoRenomeia(JTextArea textArea, String codigo) {
 
 		String diretorio = new String();
 		JFileChooser fc = new JFileChooser();
@@ -48,7 +48,7 @@ public class Botoes {
 		int ok = 0, falhas = 0;
 		for (int cont = 0; cont < antigo.size(); cont++) {
 
-			File fAntigo = new File(diretorio.toString() + "\\DSCN"
+			File fAntigo = new File(diretorio.toString() + codigo
 					+ antigo.get(cont) + ".bmp");
 			File fNovo = new File(diretorio.toString() + "\\" + novo.get(cont)
 					+ ".bmp");
