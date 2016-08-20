@@ -9,31 +9,42 @@ import javax.swing.JTextArea;
 
 public class Botoes {
 
-	public void botaoRenomeia(JTextArea textArea, String codigo) {
+	public void botaoRenomeia(JTextArea textArea, String codigo, String extensao) {
 
 		String diretorio = new String();
 		JFileChooser fc = new JFileChooser();
-		// restringe a amostra a diretorios apenas
-		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int res = 0;
+		boolean dir = true;
 
-		int res = fc.showOpenDialog(null);
-		
-		if(textArea.getName()== null){
-			JOptionPane.showMessageDialog(null, "Favor inserir algum código e CPF!");		
-			
+		if (textArea.getText() == null || textArea.getText().trim().equals("")) {
+			JOptionPane.showMessageDialog(null,
+					"Favor inserir algum código e CPF!");
+
+		} else if (extensao == "") {
+
+			JOptionPane.showMessageDialog(null, "Selecione uma extensão");
+
+		} else {
+			// restringe a amostra a diretorios apenas para selecionar o local
+			// dos arquivos
+			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			res = fc.showOpenDialog(null);
 		}
 
 		if (res == JFileChooser.APPROVE_OPTION) {
 
 			diretorio = fc.getSelectedFile().getAbsolutePath();
 
-		} else
+		} else{
+			dir = false;
 			JOptionPane.showMessageDialog(null, " Diretorio não selecionado");
-
+		}
+		
+		if(dir == true){
 		ArrayList<String> antigo = new ArrayList<String>();
 		ArrayList<String> novo = new ArrayList<String>();
 		ArrayList<String> falhasLog = new ArrayList<String>();
-		String separaLinhas[] = textArea.getText().split("\n");
+		String separaLinhas[] = textArea.getText().toString().split("\n");
 
 		for (int i = 0; i < separaLinhas.length; i++) {
 			String aux[] = separaLinhas[i].split("	");
@@ -43,15 +54,16 @@ public class Botoes {
 				else
 					novo.add(aux[j]);
 			}
+			aux = null;
 		}
 
 		int ok = 0, falhas = 0;
 		for (int cont = 0; cont < antigo.size(); cont++) {
 
-			File fAntigo = new File(diretorio.toString() + codigo
-					+ antigo.get(cont) + ".bmp");
+			File fAntigo = new File(diretorio.toString() + "\\" + codigo
+					+ antigo.get(cont) + extensao);
 			File fNovo = new File(diretorio.toString() + "\\" + novo.get(cont)
-					+ ".bmp");
+					+ extensao);
 
 			if (fAntigo.renameTo(fNovo)) {
 				ok++;
@@ -61,6 +73,8 @@ public class Botoes {
 			}
 
 		}
+		
+		
 		int confirm = JOptionPane.showConfirmDialog(null, "CONCLUIDO\nEXITO: "
 				+ ok + "  Nao encontradas: " + falhas
 				+ "\n\nDeseja ver o relatorio de erros?:", null,
@@ -77,6 +91,8 @@ public class Botoes {
 		}
 
 		falhasLog.clear();
+		
+		}
 
 	}
 
