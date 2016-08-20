@@ -1,31 +1,23 @@
 package renomeia.com.gui;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import java.awt.Font;
 import java.awt.Color;
-
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
-
 import renomeia.com.negocios.Botoes;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.border.TitledBorder;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
 import java.awt.Toolkit;
 
 
@@ -61,7 +53,7 @@ public class TelaPrincipal extends JFrame {
 	 */
 	public TelaPrincipal() {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\raylison.santos\\Downloads\\tivit.ico"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Raylison\\workspace\\Renomeia\\icon.png"));
 		setTitle("Renomeador de imagens em lotes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 446, 574);
@@ -129,7 +121,7 @@ public class TelaPrincipal extends JFrame {
 		lblTiEmAo.setBounds(162, 42, 116, 26);
 		panel.add(lblTiEmAo);
 		
-		JLabel lblDesenvolvedoresRaylison = new JLabel("Desenvolvedores: Raylison - Alex | Vers\u00E3o: 1.3");
+		JLabel lblDesenvolvedoresRaylison = new JLabel("Desenvolvedores: Raylison - Alex | Vers\u00E3o: 1.6");
 		lblDesenvolvedoresRaylison.setForeground(Color.BLACK);
 		lblDesenvolvedoresRaylison.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblDesenvolvedoresRaylison.setBounds(93, 506, 253, 22);
@@ -146,12 +138,13 @@ public class TelaPrincipal extends JFrame {
 		textFieldCodigoCam.setColumns(10);
 		
 		JLabel lblExtenso = new JLabel("Extens\u00E3o");
+		lblExtenso.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblExtenso.setBounds(12, 449, 56, 16);
 		panel.add(lblExtenso);
 		
 		
 		comboBoxExtensoes.setModel(new DefaultComboBoxModel(new String[] {"", ".jpg", ".bmp", ".png", ".bitmap"}));
-		comboBoxExtensoes.setBounds(119, 454, 116, 22);
+		comboBoxExtensoes.setBounds(119, 446, 116, 22);
 		panel.add(comboBoxExtensoes);
 		
 		
