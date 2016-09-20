@@ -7,7 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-public class Botoes {
+public class Renomeia {
 
 	public void botaoRenomeia(JTextArea textArea, String codigo, String extensao) {
 
