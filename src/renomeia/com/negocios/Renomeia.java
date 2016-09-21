@@ -2,7 +2,6 @@ package renomeia.com.negocios;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -68,7 +67,7 @@ public class Renomeia {
 				for (int cont = 0; cont < antigo.size(); cont++) {
 
 					File fAntigo = new File(diretorio.toString() + "\\"
-							+ codigo + antigo.get(cont) + extensao);
+							+ codigo.toString() + antigo.get(cont) + extensao);
 					File fNovo = new File(diretorio.toString() + "\\"
 							+ novo.get(cont) + extensao);
 
