@@ -1,25 +1,34 @@
 package renomeia.com.gui;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Color;
+
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+
 import renomeia.com.negocios.Copiar;
 import renomeia.com.negocios.Renomeia;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import java.awt.Toolkit;
+
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
@@ -43,6 +52,7 @@ public class TelaPrincipal extends JFrame {
 				try {
 					TelaPrincipal frame = new TelaPrincipal();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,10 +60,19 @@ public class TelaPrincipal extends JFrame {
 		});
 	}
 
-	public TelaPrincipal() {
+	public TelaPrincipal() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+		
+		
+		for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Windows".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
+             }
+		
+		}
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				"C:\\Users\\Raylison\\workspace\\Renomeia\\icon.png"));
+				"icon.png"));
 		setTitle("Renomeador de imagens em lotes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 446, 574);
@@ -246,7 +265,7 @@ public class TelaPrincipal extends JFrame {
 
 			}
 		});
-		btnLimpar_1.setBounds(343, 479, 78, 25);
+		btnLimpar_1.setBounds(343, 477, 78, 25);
 		aba2.add(btnLimpar_1);
 
 		JLabel lblExtenso_1 = new JLabel("Extens\u00E3o");
