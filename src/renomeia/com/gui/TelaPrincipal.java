@@ -14,6 +14,7 @@ import java.awt.Color;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
+import renomeia.com.negocios.AchaNomes;
 import renomeia.com.negocios.Copiar;
 import renomeia.com.negocios.Renomeia;
 
@@ -32,6 +33,8 @@ import java.awt.Toolkit;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
+import javax.swing.JLayeredPane;
+import javax.swing.ScrollPaneConstants;
 
 public class TelaPrincipal extends JFrame {
 
@@ -45,6 +48,8 @@ public class TelaPrincipal extends JFrame {
 	private JTextField textField_Destino;
 	private Copiar cp = new Copiar();
 	private Renomeia ren = new Renomeia();
+	private AchaNomes acn = new AchaNomes();
+	private JTextField textFieldEndereço;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -85,9 +90,9 @@ public class TelaPrincipal extends JFrame {
 		tabbedPane.setBounds(0, 0, 440, 541);
 		contentPane.add(tabbedPane);
 
-		JPanel aba1 = new JPanel();
-		tabbedPane.addTab("Renomear", null, aba1, null);
-		aba1.setLayout(null);
+		JPanel renomeia = new JPanel();
+		tabbedPane.addTab("Renomear", null, renomeia, null);
+		renomeia.setLayout(null);
 
 		JButton btnRenomear = new JButton("RENOMEAR");
 		btnRenomear.addActionListener(new ActionListener() {
@@ -99,13 +104,13 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		btnRenomear.setBounds(178, 481, 125, 25);
-		aba1.add(btnRenomear);
+		renomeia.add(btnRenomear);
 
 		JLabel lblTivit = new JLabel("TIVIT JBT");
 		lblTivit.setBounds(131, 0, 177, 52);
 		lblTivit.setForeground(Color.RED);
 		lblTivit.setFont(new Font("SansSerif", Font.PLAIN, 40));
-		aba1.add(lblTivit);
+		renomeia.add(lblTivit);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setToolTipText("teste");
@@ -115,7 +120,7 @@ public class TelaPrincipal extends JFrame {
 				"Copie e cole o c\u00F3digo e o CPF", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(3, 81, 434, 332);
-		aba1.add(panel_1);
+		renomeia.add(panel_1);
 		panel_1.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -135,44 +140,44 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		btnLimpar.setBounds(315, 481, 116, 25);
-		aba1.add(btnLimpar);
+		renomeia.add(btnLimpar);
 
 		JLabel lblTiEmAo = new JLabel("TI EM A\u00C7\u00C3O");
 		lblTiEmAo.setForeground(Color.RED);
 		lblTiEmAo.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		lblTiEmAo.setBounds(162, 42, 116, 26);
-		aba1.add(lblTiEmAo);
+		renomeia.add(lblTiEmAo);
 
 		JLabel lblCodigoDaCamera = new JLabel("Codigo da c\u00E2mera");
 		lblCodigoDaCamera.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblCodigoDaCamera.setBounds(12, 418, 104, 23);
-		aba1.add(lblCodigoDaCamera);
+		renomeia.add(lblCodigoDaCamera);
 
 		textFieldCodigoCam = new JTextField();
 		textFieldCodigoCam.setBounds(119, 419, 116, 22);
-		aba1.add(textFieldCodigoCam);
+		renomeia.add(textFieldCodigoCam);
 		textFieldCodigoCam.setColumns(10);
 
 		JLabel lblExtenso = new JLabel("Extens\u00E3o");
 		lblExtenso.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblExtenso.setBounds(12, 449, 56, 16);
-		aba1.add(lblExtenso);
+		renomeia.add(lblExtenso);
 
 		comboBoxExtensoes.setModel(new DefaultComboBoxModel<Object>(
 				new String[] { ".jpg", ".bmp", ".png", ".bitmap" }));
 		comboBoxExtensoes.setSelectedItem(null);
 		comboBoxExtensoes.setBounds(119, 446, 116, 22);
-		aba1.add(comboBoxExtensoes);
+		renomeia.add(comboBoxExtensoes);
 
-		JPanel aba2 = new JPanel();
-		tabbedPane.addTab("Copiar", null, aba2, null);
-		aba2.setLayout(null);
+		JPanel Copia = new JPanel();
+		tabbedPane.addTab("Copiar", null, Copia, null);
+		Copia.setLayout(null);
 
 		JLabel label = new JLabel("TIVIT JBT");
 		label.setForeground(Color.RED);
 		label.setFont(new Font("SansSerif", Font.PLAIN, 40));
 		label.setBounds(131, 0, 177, 52);
-		aba2.add(label);
+		Copia.add(label);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
@@ -183,7 +188,7 @@ public class TelaPrincipal extends JFrame {
 				"Copie e cole o CPF", TitledBorder.LEADING, TitledBorder.TOP,
 				null, new Color(0, 0, 0)));
 		panel_4.setBounds(0, 81, 434, 313);
-		aba2.add(panel_4);
+		Copia.add(panel_4);
 
 		JScrollPane scrollPaneCopia = new JScrollPane();
 		scrollPaneCopia.setBounds(12, 24, 410, 308);
@@ -197,28 +202,28 @@ public class TelaPrincipal extends JFrame {
 		label_1.setForeground(Color.RED);
 		label_1.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		label_1.setBounds(162, 42, 116, 26);
-		aba2.add(label_1);
+		Copia.add(label_1);
 
 		textField_Origem = new JTextField();
 		textField_Origem.setEditable(false);
 		textField_Origem.setBounds(64, 407, 253, 22);
-		aba2.add(textField_Origem);
+		Copia.add(textField_Origem);
 		textField_Origem.setColumns(10);
 
 		JLabel lblOrigem = new JLabel("Origem");
 		lblOrigem.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblOrigem.setBounds(10, 407, 56, 16);
-		aba2.add(lblOrigem);
+		Copia.add(lblOrigem);
 
 		JLabel lblDestino = new JLabel("Destino");
 		lblDestino.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDestino.setBounds(8, 444, 56, 16);
-		aba2.add(lblDestino);
+		Copia.add(lblDestino);
 
 		textField_Destino = new JTextField();
 		textField_Destino.setEditable(false);
 		textField_Destino.setBounds(64, 442, 253, 22);
-		aba2.add(textField_Destino);
+		Copia.add(textField_Destino);
 		textField_Destino.setColumns(10);
 
 		JButton btnSelecionar_Ori = new JButton("Selecionar");
@@ -230,7 +235,7 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		btnSelecionar_Ori.setBounds(324, 407, 97, 25);
-		aba2.add(btnSelecionar_Ori);
+		Copia.add(btnSelecionar_Ori);
 
 		JButton btnSelecionar_Dest = new JButton("Selecionar");
 		btnSelecionar_Dest.addActionListener(new ActionListener() {
@@ -240,7 +245,7 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		btnSelecionar_Dest.setBounds(324, 441, 97, 25);
-		aba2.add(btnSelecionar_Dest);
+		Copia.add(btnSelecionar_Dest);
 
 		JButton btnCopiar = new JButton("Copiar");
 		btnCopiar.addActionListener(new ActionListener() {
@@ -252,7 +257,7 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		btnCopiar.setBounds(249, 477, 78, 25);
-		aba2.add(btnCopiar);
+		Copia.add(btnCopiar);
 
 		JButton btnLimpar_1 = new JButton("Limpar");
 		btnLimpar_1.addActionListener(new ActionListener() {
@@ -266,32 +271,84 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		btnLimpar_1.setBounds(343, 477, 78, 25);
-		aba2.add(btnLimpar_1);
+		Copia.add(btnLimpar_1);
 
 		JLabel lblExtenso_1 = new JLabel("Extens\u00E3o");
 		lblExtenso_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblExtenso_1.setBounds(10, 481, 69, 16);
-		aba2.add(lblExtenso_1);
+		Copia.add(lblExtenso_1);
 
 		comboBoxExtensoesCopy.setModel(new DefaultComboBoxModel<Object>(
 				new String[] { ".jpg", ".bmp", ".png", ".bitmap" }));
 		comboBoxExtensoesCopy.setSelectedItem(null);
 		comboBoxExtensoesCopy.setBounds(74, 478, 116, 22);
-		aba2.add(comboBoxExtensoesCopy);
+		Copia.add(comboBoxExtensoesCopy);
 		
-		JPanel aba3 = new JPanel();
-		tabbedPane.addTab("Sobre", null, aba3, null);
-		aba3.setLayout(null);
+		JPanel Recupera = new JPanel();
+		tabbedPane.addTab("Acha Nomes", null, Recupera, null);
+		Recupera.setLayout(null);
+		
+		JLabel label_2 = new JLabel("TIVIT JBT");
+		label_2.setForeground(Color.RED);
+		label_2.setFont(new Font("SansSerif", Font.PLAIN, 40));
+		label_2.setBounds(121, 11, 177, 52);
+		Recupera.add(label_2);
+		
+		JLabel label_3 = new JLabel("TI EM A\u00C7\u00C3O");
+		label_3.setForeground(Color.RED);
+		label_3.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		label_3.setBounds(154, 55, 116, 26);
+		Recupera.add(label_3);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Editar depois", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(0, 148, 435, 365);
+		Recupera.add(panel);
+		panel.setLayout(null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setBounds(10, 27, 415, 327);
+		panel.add(scrollPane_1);
+		
+		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setEditable(false);
+		textArea_1.setLineWrap(true);
+		scrollPane_1.setViewportView(textArea_1);
+		
+		JLabel lblEndereo = new JLabel("Endere\u00E7o");
+		lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblEndereo.setBounds(10, 111, 70, 26);
+		Recupera.add(lblEndereo);
+		
+		textFieldEndereço = new JTextField();
+		textFieldEndereço.setBounds(74, 116, 224, 20);
+		Recupera.add(textFieldEndereço);
+		textFieldEndereço.setColumns(10);
+		
+		JButton btnLocalizar = new JButton("Localizar");
+		btnLocalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				textFieldEndereço.setText(acn.botaoSelecionarDestino());			}
+		});
+		
+		btnLocalizar.setBounds(308, 115, 89, 23);
+		Recupera.add(btnLocalizar);
+		
+		JPanel Sobre = new JPanel();
+		tabbedPane.addTab("Sobre", null, Sobre, null);
+		Sobre.setLayout(null);
 		
 		JTextArea txtrDesenvolvedoresRaylison = new JTextArea();
 		txtrDesenvolvedoresRaylison.setFont(new Font("Arial", Font.PLAIN, 13));
 		txtrDesenvolvedoresRaylison.setBackground(UIManager.getColor("Button.background"));
 		txtrDesenvolvedoresRaylison.setForeground(Color.BLACK);
 		txtrDesenvolvedoresRaylison.setEditable(false);
-		txtrDesenvolvedoresRaylison.setText("Aplica\u00E7\u00E3o desenvolvida com o intuito de agilizar o processo de cadatro para novos colaboradores realizado pelo RH.\r\n\r\nFun\u00E7\u00E3o: 1 - Realizar a renomia\u00E7\u00E3o em massa de arquivos fotograficos.\r\n             2 - Realizar a copia de arquivos em grandes quantidades, de                    um diretorio a outro.\r\n\r\n\r\nDesenvolvedor: Raylison Nunes , Alex Barbosa.\r\nCoordenador:  Alex Barbosa.\r\n\r\n\r\nInicio do projeto: Julho/2016 \r\n\r\n\r\n\r\n\r\n\r\n                                           Vers\u00E3o: 1.9");
+		txtrDesenvolvedoresRaylison.setText("Aplica\u00E7\u00E3o desenvolvida com o intuito de agilizar o processo de cadatro para novos colaboradores realizado pelo RH.\r\n\r\nFun\u00E7\u00E3o: 1 - Realizar a renomia\u00E7\u00E3o em massa de arquivos fotograficos.\r\n             2 - Realizar a copia de arquivos em grandes quantidades, de                    um diretorio a outro.\r\n\r\n\r\nDesenvolvedor: Raylison Nunes , Alex Barbosa.\r\nCoordenador:  Alex Barbosa.\r\n\r\n\r\nInicio do projeto: Julho/2016 \r\n\r\n\r\n\r\n\r\n\r\n                                           Vers\u00E3o: 2.0");
 		txtrDesenvolvedoresRaylison.setLineWrap(true);
 		txtrDesenvolvedoresRaylison.setBounds(10, 11, 415, 491);
-		aba3.add(txtrDesenvolvedoresRaylison);
+		Sobre.add(txtrDesenvolvedoresRaylison);
 
 	}
 }
