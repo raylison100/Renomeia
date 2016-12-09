@@ -50,6 +50,7 @@ public class TelaPrincipal extends JFrame {
 	private Renomeia ren = new Renomeia();
 	private AchaNomes acn = new AchaNomes();
 	private JTextField textFieldEndereço;
+	private JTextField textFieldFiltro;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -302,19 +303,19 @@ public class TelaPrincipal extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Editar depois", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(0, 148, 435, 365);
+		panel.setBounds(0, 204, 435, 309);
 		Recupera.add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane_1.setBounds(10, 27, 415, 327);
+		scrollPane_1.setBounds(10, 27, 415, 282);
 		panel.add(scrollPane_1);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setEditable(false);
-		textArea_1.setLineWrap(true);
-		scrollPane_1.setViewportView(textArea_1);
+		JTextArea textAreaAcharNomes = new JTextArea();
+		textAreaAcharNomes.setEditable(false);
+		textAreaAcharNomes.setLineWrap(true);
+		scrollPane_1.setViewportView(textAreaAcharNomes);
 		
 		JLabel lblEndereo = new JLabel("Endere\u00E7o");
 		lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -330,11 +331,29 @@ public class TelaPrincipal extends JFrame {
 		btnLocalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				textFieldEndereço.setText(acn.botaoSelecionarDestino());			}
+				acn.botaoSelecionarDestino();				
+				textFieldEndereço.setText(acn.getDestino());
+				
+				
+			
+			}
 		});
+		
+		
+		
 		
 		btnLocalizar.setBounds(308, 115, 89, 23);
 		Recupera.add(btnLocalizar);
+		
+		JLabel lblFiltro = new JLabel("Filtro");
+		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblFiltro.setBounds(10, 162, 46, 20);
+		Recupera.add(lblFiltro);
+		
+		textFieldFiltro = new JTextField();
+		textFieldFiltro.setBounds(53, 164, 205, 20);
+		Recupera.add(textFieldFiltro);
+		textFieldFiltro.setColumns(10);
 		
 		JPanel Sobre = new JPanel();
 		tabbedPane.addTab("Sobre", null, Sobre, null);
