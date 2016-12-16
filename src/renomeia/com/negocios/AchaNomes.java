@@ -5,17 +5,15 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 public class AchaNomes {
-	
-	
-	
-	ArrayList<String>  dados = new ArrayList<String>();
+
+	ArrayList<String> dados = new ArrayList<String>();
 	String diretorio = new String();
-	
+
 	public void botaoSelecionarDestino() {
 
-		
 		JFileChooser fc = new JFileChooser();
 		int res = 0;
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -25,36 +23,44 @@ public class AchaNomes {
 			diretorio = fc.getSelectedFile().getAbsolutePath();
 
 		} else {
-			
+
 			JOptionPane.showMessageDialog(null, " Diretorio não selecionado");
 		}
-				
-		
+
 		File raiz = new File(diretorio);
-		for(File f: raiz.listFiles()) {
-			if(f.isFile()) {
-			   dados.add(f.getName());
+		dados.clear();
+		for (File f : raiz.listFiles()) {
+			if (f.isFile()) {
+				dados.add(f.getName());
+			}
+		}
+
+	}
+
+	public void filtro(String nomes, JTextArea textArea){
+		
+		String temp = new String();
+		
+		for (String s : dados) {
+			
+			if(s.contains(nomes)){			
+			    temp += s + "\n";
 			}
 		}
 		
-		
-}	
-		
-
-	public String getDestino(){
+		textArea.setText(temp);
 		
 		
-	return diretorio;	
-	
 	}
-	
-	
-	public ArrayList<String> gettDados(){
+
+	public String getDestino() {
+
+		return diretorio;
+
+	}
+
+	public ArrayList<String> gettDados() {
 		return dados;
 	}
-	
-	
-	
-	
-	
+
 }

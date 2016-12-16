@@ -330,12 +330,12 @@ public class TelaPrincipal extends JFrame {
 		JButton btnLocalizar = new JButton("Localizar");
 		btnLocalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+			
+				textAreaAcharNomes.setText(" ");
 				acn.botaoSelecionarDestino();				
 				textFieldEndereço.setText(acn.getDestino());
-				
-				
-			
+				acn.filtro(textFieldFiltro.getName(), textAreaAcharNomes);
+						
 			}
 		});
 		
