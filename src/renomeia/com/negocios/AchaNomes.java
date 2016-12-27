@@ -37,20 +37,25 @@ public class AchaNomes {
 
 	}
 
-	public void filtro(String nomes, JTextArea textArea){
-		
+	public void filtro(String nomes, JTextArea textArea) {
+
 		String temp = new String();
-		
+
 		for (String s : dados) {
-			
-			if(s.contains(nomes)){			
-			    temp += s + "\n";
+
+			if (nomes.toString() != null || nomes.toString().equals("")) {
+				if (s.contains(nomes.toString())) 
+					temp += s + "\n";
+				
+			} else {
+
+				temp += s + "\n";
+
 			}
 		}
-		
+
 		textArea.setText(temp);
-		
-		
+
 	}
 
 	public String getDestino() {
