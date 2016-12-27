@@ -23,7 +23,7 @@ public class Teste {
 		String s = new String();
 		s = " casa amarela";
 		
-		if(s.contains("dado")){			
+		if(s.contains("ama")){			
 		   System.out.println("achhou");
 		}else
 			System.out.println("não achou");

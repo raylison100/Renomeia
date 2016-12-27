@@ -331,10 +331,13 @@ public class TelaPrincipal extends JFrame {
 		btnLocalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
-				textAreaAcharNomes.setText(" ");
+				
+				textFieldFiltro.setText("");
+				textAreaAcharNomes.setText("");
 				acn.botaoSelecionarDestino();				
 				textFieldEndereço.setText(acn.getDestino());
-				acn.filtro(textFieldFiltro.getName(), textAreaAcharNomes);
+				System.out.println(textFieldFiltro.getText());
+				acn.filtro(textFieldFiltro.getText(), textAreaAcharNomes);
 						
 			}
 		});

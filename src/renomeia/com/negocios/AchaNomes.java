@@ -1,11 +1,13 @@
 package renomeia.com.negocios;
 
+import java.awt.TextField;
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class AchaNomes {
 
@@ -42,15 +44,22 @@ public class AchaNomes {
 		String temp = new String();
 
 		for (String s : dados) {
-
-			if (nomes.toString() != null || nomes.toString().equals("")) {
-				if (s.contains(nomes.toString())) 
-					temp += s + "\n";
+			
+			if (nomes != null) {
 				
+				
+				if (s.contains(nomes)){
+					
+					temp += s + "\n";
+				}
+
 			} else {
 
 				temp += s + "\n";
 
+				
+				
+				
 			}
 		}
 
