@@ -1,13 +1,10 @@
 package renomeia.com.negocios;
 
-import java.awt.TextField;
 import java.io.File;
 import java.util.ArrayList;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class AchaNomes {
 
@@ -24,18 +21,20 @@ public class AchaNomes {
 
 			diretorio = fc.getSelectedFile().getAbsolutePath();
 
+			File raiz = new File(diretorio);
+			dados.clear();
+			for (File f : raiz.listFiles()) {
+				if (f.isFile()) {
+					dados.add(f.getName());
+				}
+			}
+
 		} else {
 
 			JOptionPane.showMessageDialog(null, " Diretorio não selecionado");
 		}
 
-		File raiz = new File(diretorio);
-		dados.clear();
-		for (File f : raiz.listFiles()) {
-			if (f.isFile()) {
-				dados.add(f.getName());
-			}
-		}
+		
 
 	}
 
@@ -44,12 +43,11 @@ public class AchaNomes {
 		String temp = new String();
 
 		for (String s : dados) {
-			
+
 			if (nomes != null) {
-				
-				
-				if (s.contains(nomes)){
-					
+
+				if (s.contains(nomes)) {
+
 					temp += s + "\n";
 				}
 
@@ -57,9 +55,6 @@ public class AchaNomes {
 
 				temp += s + "\n";
 
-				
-				
-				
 			}
 		}
 

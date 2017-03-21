@@ -31,10 +31,13 @@ import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.Toolkit;
 
 import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
-import javax.swing.JTextPane;
-import javax.swing.JLayeredPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaPrincipal extends JFrame {
 
@@ -51,6 +54,7 @@ public class TelaPrincipal extends JFrame {
 	private AchaNomes acn = new AchaNomes();
 	private JTextField textFieldEndereço;
 	private JTextField textFieldFiltro;
+	private String endFilter;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -77,8 +81,7 @@ public class TelaPrincipal extends JFrame {
 		
 		}
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				"icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\raylison.santos\\git\\Renomeia\\icon.png"));
 		setTitle("Renomeador de imagens em lotes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 446, 574);
@@ -107,10 +110,10 @@ public class TelaPrincipal extends JFrame {
 		btnRenomear.setBounds(178, 481, 125, 25);
 		renomeia.add(btnRenomear);
 
-		JLabel lblTivit = new JLabel("TIVIT JBT");
-		lblTivit.setBounds(131, 0, 177, 52);
-		lblTivit.setForeground(Color.RED);
-		lblTivit.setFont(new Font("SansSerif", Font.PLAIN, 40));
+		JLabel lblTivit = new JLabel("Neobpo");
+		lblTivit.setBounds(151, 0, 125, 52);
+		lblTivit.setForeground(Color.BLUE);
+		lblTivit.setFont(new Font("SansSerif", Font.PLAIN, 35));
 		renomeia.add(lblTivit);
 
 		JPanel panel_1 = new JPanel();
@@ -144,9 +147,9 @@ public class TelaPrincipal extends JFrame {
 		renomeia.add(btnLimpar);
 
 		JLabel lblTiEmAo = new JLabel("TI EM A\u00C7\u00C3O");
-		lblTiEmAo.setForeground(Color.RED);
+		lblTiEmAo.setForeground(Color.BLUE);
 		lblTiEmAo.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblTiEmAo.setBounds(162, 42, 116, 26);
+		lblTiEmAo.setBounds(151, 44, 116, 26);
 		renomeia.add(lblTiEmAo);
 
 		JLabel lblCodigoDaCamera = new JLabel("Codigo da c\u00E2mera");
@@ -174,11 +177,11 @@ public class TelaPrincipal extends JFrame {
 		tabbedPane.addTab("Copiar", null, Copia, null);
 		Copia.setLayout(null);
 
-		JLabel label = new JLabel("TIVIT JBT");
-		label.setForeground(Color.RED);
-		label.setFont(new Font("SansSerif", Font.PLAIN, 40));
-		label.setBounds(131, 0, 177, 52);
-		Copia.add(label);
+		JLabel lblNeobpo = new JLabel("Neobpo");
+		lblNeobpo.setForeground(Color.BLUE);
+		lblNeobpo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		lblNeobpo.setBounds(153, 0, 125, 52);
+		Copia.add(lblNeobpo);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
@@ -200,9 +203,9 @@ public class TelaPrincipal extends JFrame {
 		scrollPaneCopia.setViewportView(textAreaCopia);
 
 		JLabel label_1 = new JLabel("TI EM A\u00C7\u00C3O");
-		label_1.setForeground(Color.RED);
+		label_1.setForeground(Color.BLUE);
 		label_1.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		label_1.setBounds(162, 42, 116, 26);
+		label_1.setBounds(153, 44, 116, 26);
 		Copia.add(label_1);
 
 		textField_Origem = new JTextField();
@@ -289,16 +292,16 @@ public class TelaPrincipal extends JFrame {
 		tabbedPane.addTab("Acha Nomes", null, Recupera, null);
 		Recupera.setLayout(null);
 		
-		JLabel label_2 = new JLabel("TIVIT JBT");
-		label_2.setForeground(Color.RED);
-		label_2.setFont(new Font("SansSerif", Font.PLAIN, 40));
-		label_2.setBounds(121, 11, 177, 52);
-		Recupera.add(label_2);
+		JLabel lblNeobpo_1 = new JLabel("Neobpo");
+		lblNeobpo_1.setForeground(Color.BLUE);
+		lblNeobpo_1.setFont(new Font("SansSerif", Font.PLAIN, 35));
+		lblNeobpo_1.setBounds(147, 11, 122, 34);
+		Recupera.add(lblNeobpo_1);
 		
 		JLabel label_3 = new JLabel("TI EM A\u00C7\u00C3O");
-		label_3.setForeground(Color.RED);
+		label_3.setForeground(Color.BLUE);
 		label_3.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		label_3.setBounds(154, 55, 116, 26);
+		label_3.setBounds(147, 44, 116, 26);
 		Recupera.add(label_3);
 		
 		JPanel panel = new JPanel();
@@ -332,7 +335,7 @@ public class TelaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			
 				
-				textFieldFiltro.setText("");
+				//textFieldFiltro.setText("");
 				textAreaAcharNomes.setText("");
 				acn.botaoSelecionarDestino();				
 				textFieldEndereço.setText(acn.getDestino());
@@ -354,7 +357,21 @@ public class TelaPrincipal extends JFrame {
 		Recupera.add(lblFiltro);
 		
 		textFieldFiltro = new JTextField();
-		textFieldFiltro.setBounds(53, 164, 205, 20);
+		textFieldFiltro.addKeyListener(new KeyAdapter() {
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+				textAreaAcharNomes.setText("");
+				textFieldEndereço.setText(acn.getDestino());
+				System.out.println(textFieldFiltro.getText());
+				acn.filtro(textFieldFiltro.getText(), textAreaAcharNomes);
+			}
+		});
+		
+	
+		
+		textFieldFiltro.setBounds(53, 164, 140, 20);
 		Recupera.add(textFieldFiltro);
 		textFieldFiltro.setColumns(10);
 		
@@ -367,7 +384,7 @@ public class TelaPrincipal extends JFrame {
 		txtrDesenvolvedoresRaylison.setBackground(UIManager.getColor("Button.background"));
 		txtrDesenvolvedoresRaylison.setForeground(Color.BLACK);
 		txtrDesenvolvedoresRaylison.setEditable(false);
-		txtrDesenvolvedoresRaylison.setText("Aplica\u00E7\u00E3o desenvolvida com o intuito de agilizar o processo de cadatro para novos colaboradores realizado pelo RH.\r\n\r\nFun\u00E7\u00E3o: 1 - Realizar a renomia\u00E7\u00E3o em massa de arquivos fotograficos.\r\n             2 - Realizar a copia de arquivos em grandes quantidades, de                    um diretorio a outro.\r\n\r\n\r\nDesenvolvedor: Raylison Nunes , Alex Barbosa.\r\nCoordenador:  Alex Barbosa.\r\n\r\n\r\nInicio do projeto: Julho/2016 \r\n\r\n\r\n\r\n\r\n\r\n                                           Vers\u00E3o: 2.0");
+		txtrDesenvolvedoresRaylison.setText("Aplica\u00E7\u00E3o desenvolvida com o intuito de agilizar o processo de cadatro para novos colaboradores realizado pelo RH.\r\n\r\nFun\u00E7\u00E3o: 1 - Realizar a renomia\u00E7\u00E3o em massa de arquivos fotograficos.\r\n             2 - Realizar a copia de arquivos em grandes quantidades, de                    um diretorio a outro.\r\n\r\n\r\nDesenvolvedor: Raylison Nunes , Alex Barbosa.\r\nCoordenador:  Alex Barbosa.\r\n\r\n\r\nInicio do projeto: Julho/2016 \r\n\r\n\r\n\r\n\r\n\r\n                                           Vers\u00E3o: 3.0");
 		txtrDesenvolvedoresRaylison.setLineWrap(true);
 		txtrDesenvolvedoresRaylison.setBounds(10, 11, 415, 491);
 		Sobre.add(txtrDesenvolvedoresRaylison);
