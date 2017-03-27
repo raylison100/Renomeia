@@ -10,24 +10,34 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.Color;
+
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+
 import renomeia.com.negocios.AchaNomes;
 import renomeia.com.negocios.Copiar;
+import renomeia.com.negocios.Deletar;
+import renomeia.com.negocios.Recorta;
 import renomeia.com.negocios.Renomeia;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UnsupportedLookAndFeelException;
+
 import java.awt.Toolkit;
+
 import javax.swing.JTabbedPane;
 import javax.swing.ScrollPaneConstants;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
 
 public class TelaPrincipal extends JFrame {
@@ -41,6 +51,8 @@ public class TelaPrincipal extends JFrame {
 	private JTextField textField_Origem;
 	private JTextField textField_Destino;
 	private Copiar cp = new Copiar();
+	private Recorta cr = new Recorta();
+	private Deletar dl = new Deletar();
 	private Renomeia ren = new Renomeia();
 	private AchaNomes acn = new AchaNomes();
 	private JTextField textFieldEndereço;
@@ -72,7 +84,7 @@ public class TelaPrincipal extends JFrame {
 		
 		}
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\raylison.santos\\git\\Renomeia\\IMAGENS\\teste2.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/IMAGENS/teste2.png")));
 		setTitle("Renomeador de imagens em lotes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 446, 600);
@@ -155,19 +167,19 @@ public class TelaPrincipal extends JFrame {
 																						renomeia.add(lblExtenso);
 																						
 																								comboBoxExtensoes.setModel(new DefaultComboBoxModel<Object>(
-																										new String[] { ".jpg", ".bmp", ".png", ".bitmap" }));
+																										new String[] { ".jpg", ".bmp", ".png", ".bitmap","" }));
 																								comboBoxExtensoes.setSelectedItem(null);
 																								comboBoxExtensoes.setBounds(121, 470, 116, 22);
 																								renomeia.add(comboBoxExtensoes);
 																								
 																								JLabel label = new JLabel("");
-																								label.setIcon(new ImageIcon("C:\\Users\\raylison.santos\\git\\Renomeia\\IMAGENS\\teste2.png"));
+																								label.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/IMAGENS/teste2.png")));
 																								label.setBounds(129, 5, 75, 79);
 																								renomeia.add(label);
 
-		JPanel Copia = new JPanel();
-		tabbedPane.addTab("Copiar", new ImageIcon(TelaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")), Copia, null);
-		Copia.setLayout(null);
+		JPanel Transferir = new JPanel();
+		tabbedPane.addTab("Transferir", new ImageIcon(TelaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")), Transferir, null);
+		Transferir.setLayout(null);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
@@ -177,11 +189,11 @@ public class TelaPrincipal extends JFrame {
 				TitledBorder.TOP, null, new Color(0, 0, 0)),
 				"Copie e cole o CPF", TitledBorder.LEADING, TitledBorder.TOP,
 				null, new Color(0, 0, 0)));
-		panel_4.setBounds(0, 90, 434, 329);
-		Copia.add(panel_4);
+		panel_4.setBounds(0, 90, 434, 262);
+		Transferir.add(panel_4);
 
 		JScrollPane scrollPaneCopia = new JScrollPane();
-		scrollPaneCopia.setBounds(12, 22, 410, 296);
+		scrollPaneCopia.setBounds(12, 22, 410, 229);
 		panel_4.add(scrollPaneCopia);
 
 		JTextArea textAreaCopia = new JTextArea();
@@ -192,28 +204,28 @@ public class TelaPrincipal extends JFrame {
 		label_1.setForeground(Color.BLUE);
 		label_1.setFont(new Font("Cordia New", Font.BOLD, 25));
 		label_1.setBounds(214, 25, 103, 26);
-		Copia.add(label_1);
+		Transferir.add(label_1);
 
 		textField_Origem = new JTextField();
 		textField_Origem.setEditable(false);
-		textField_Origem.setBounds(76, 430, 217, 22);
-		Copia.add(textField_Origem);
+		textField_Origem.setBounds(76, 363, 217, 22);
+		Transferir.add(textField_Origem);
 		textField_Origem.setColumns(10);
 
 		JLabel lblOrigem = new JLabel("Origem");
 		lblOrigem.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblOrigem.setBounds(10, 431, 56, 16);
-		Copia.add(lblOrigem);
+		lblOrigem.setBounds(10, 363, 56, 16);
+		Transferir.add(lblOrigem);
 
 		JLabel lblDestino = new JLabel("Destino");
 		lblDestino.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblDestino.setBounds(10, 469, 56, 16);
-		Copia.add(lblDestino);
+		lblDestino.setBounds(10, 400, 56, 16);
+		Transferir.add(lblDestino);
 
 		textField_Destino = new JTextField();
 		textField_Destino.setEditable(false);
-		textField_Destino.setBounds(76, 463, 217, 22);
-		Copia.add(textField_Destino);
+		textField_Destino.setBounds(76, 399, 217, 22);
+		Transferir.add(textField_Destino);
 		textField_Destino.setColumns(10);
 
 		JButton btnSelecionar_Ori = new JButton("Selecionar");
@@ -225,8 +237,8 @@ public class TelaPrincipal extends JFrame {
 
 			}
 		});
-		btnSelecionar_Ori.setBounds(310, 429, 103, 25);
-		Copia.add(btnSelecionar_Ori);
+		btnSelecionar_Ori.setBounds(303, 363, 114, 25);
+		Transferir.add(btnSelecionar_Ori);
 
 		JButton btnSelecionar_Dest = new JButton("Selecionar");
 		btnSelecionar_Dest.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/javax/swing/plaf/metal/icons/ocean/upFolder.gif")));
@@ -236,21 +248,29 @@ public class TelaPrincipal extends JFrame {
 				textField_Destino.setText(cp.botaoSelecionardesti());
 			}
 		});
-		btnSelecionar_Dest.setBounds(307, 460, 110, 25);
-		Copia.add(btnSelecionar_Dest);
+		btnSelecionar_Dest.setBounds(303, 398, 110, 25);
+		Transferir.add(btnSelecionar_Dest);
 
 		JButton btnCopiar = new JButton("Copiar");
 		btnCopiar.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
 		btnCopiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				if(comboBoxExtensoesCopy.getSelectedItem() == null ){
+					
+					
+					cp.botaoCopiar(textAreaCopia,"");
+					
+				}else{
+								
 				cp.botaoCopiar(textAreaCopia, comboBoxExtensoesCopy
 						.getSelectedItem().toString());
 
+				}
 			}
 		});
-		btnCopiar.setBounds(230, 498, 87, 25);
-		Copia.add(btnCopiar);
+		btnCopiar.setBounds(10, 498, 87, 25);
+		Transferir.add(btnCopiar);
 
 		JButton btnLimpar_1 = new JButton("Limpar");
 		btnLimpar_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/FontBackgroundColor_16x16_JFX.png")));
@@ -264,27 +284,50 @@ public class TelaPrincipal extends JFrame {
 
 			}
 		});
-		btnLimpar_1.setBounds(330, 498, 87, 25);
-		Copia.add(btnLimpar_1);
+		btnLimpar_1.setBounds(220, 498, 87, 25);
+		Transferir.add(btnLimpar_1);
 
 		JLabel lblExtenso_1 = new JLabel("Extens\u00E3o");
 		lblExtenso_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblExtenso_1.setBounds(10, 507, 69, 16);
-		Copia.add(lblExtenso_1);
+		lblExtenso_1.setBounds(10, 443, 69, 16);
+		Transferir.add(lblExtenso_1);
 		comboBoxExtensoesCopy.setToolTipText("");
 
-		comboBoxExtensoesCopy.setModel(new DefaultComboBoxModel<Object>(
-				new String[] { ".jpg", ".bmp", ".png", ".bitmap" }));
+		comboBoxExtensoesCopy.setModel(new DefaultComboBoxModel<Object>(new String[] {".jpg", ".bmp", ".png", ".bitmap"}));
 		comboBoxExtensoesCopy.setSelectedItem(null);
-		comboBoxExtensoesCopy.setBounds(80, 501, 116, 22);
-		Copia.add(comboBoxExtensoesCopy);
+		comboBoxExtensoesCopy.setBounds(76, 442, 116, 22);
+		Transferir.add(comboBoxExtensoesCopy);
 		
 				JLabel lblNeobpo = new JLabel("");
 				lblNeobpo.setBounds(129, 5, 75, 79);
-				Copia.add(lblNeobpo);
-				lblNeobpo.setIcon(new ImageIcon("C:\\Users\\raylison.santos\\git\\Renomeia\\IMAGENS\\teste2.png"));
+				Transferir.add(lblNeobpo);
+				lblNeobpo.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/IMAGENS/teste2.png")));
 				lblNeobpo.setForeground(Color.BLUE);
 				lblNeobpo.setFont(new Font("SansSerif", Font.PLAIN, 35));
+				
+				JButton btnRecortar = new JButton("Recortar");
+				btnRecortar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						if(comboBoxExtensoesCopy.getSelectedItem() == null ){							
+							
+							cr.botaoRecorta(textAreaCopia,"");							
+						}else{
+										
+						    cr.botaoRecorta(textAreaCopia, comboBoxExtensoesCopy
+								.getSelectedItem().toString());
+						}
+												
+					}
+				});
+				btnRecortar.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/Cut_16x16_JFX.png")));
+				btnRecortar.setBounds(107, 499, 103, 23);
+				Transferir.add(btnRecortar);
+				
+				JButton btnDeletar = new JButton("Deletar");
+				btnDeletar.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/com/sun/java/swing/plaf/windows/icons/Warn.gif")));
+				btnDeletar.setBounds(317, 499, 103, 23);
+				Transferir.add(btnDeletar);
 		
 		JPanel Recupera = new JPanel();
 		tabbedPane.addTab("Acha Nomes", new ImageIcon(TelaPrincipal.class.getResource("/com/sun/java/swing/plaf/windows/icons/ListView.gif")), Recupera, null);
@@ -322,7 +365,7 @@ public class TelaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			
 				
-				//textFieldFiltro.setText("");
+				
 				textAreaAcharNomes.setText("");
 				acn.botaoSelecionarDestino();				
 				textFieldEndereço.setText(acn.getDestino());
@@ -369,7 +412,7 @@ public class TelaPrincipal extends JFrame {
 		Recupera.add(lblTiEmAo_1);
 		
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon("C:\\Users\\raylison.santos\\git\\Renomeia\\IMAGENS\\teste2.png"));
+		label_2.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/IMAGENS/teste2.png")));
 		label_2.setBounds(129, 5, 75, 79);
 		Recupera.add(label_2);
 		
